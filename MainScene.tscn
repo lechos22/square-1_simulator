@@ -72,6 +72,40 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
+[node name="GridContainer" type="GridContainer" parent="GUI/Columns/MControls"]
+layout_mode = 2
+size_flags_vertical = 2
+columns = 2
+
+[node name="ActionQueueLabel" type="Label" parent="GUI/Columns/MControls/GridContainer"]
+layout_mode = 2
+text = "Action queue:"
+
+[node name="ActionQueueDisplay" type="Label" parent="GUI/Columns/MControls/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+clip_text = true
+
+[node name="ActiveLayerLabel" type="Label" parent="GUI/Columns/MControls/GridContainer"]
+layout_mode = 2
+text = "Active layer:"
+
+[node name="ActiveLayerDisplay" type="Label" parent="GUI/Columns/MControls/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RotationDirectionLabel" type="Label" parent="GUI/Columns/MControls/GridContainer"]
+layout_mode = 2
+text = "Active layer:"
+
+[node name="RotationDirectionDisplay" type="Label" parent="GUI/Columns/MControls/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rotation direction:"
+
 [node name="BControls" type="HBoxContainer" parent="GUI/Columns/MControls"]
 layout_mode = 2
 alignment = 2
@@ -94,3 +128,9 @@ text = "(-1, 0)"
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = "(0, 1)"
+
+[connection signal="pressed" from="GUI/Columns/LControls/Button10" to="World/Cube" method="_on_button_10_pressed"]
+[connection signal="pressed" from="GUI/Columns/LControls/ButtonN01" to="World/Cube" method="_on_button_n_01_pressed"]
+[connection signal="pressed" from="GUI/Columns/MControls/BControls/ButtonTilt" to="World/Cube" method="_on_button_tilt_pressed"]
+[connection signal="pressed" from="GUI/Columns/RControls/ButtonN10" to="World/Cube" method="_on_button_n_10_pressed"]
+[connection signal="pressed" from="GUI/Columns/RControls/Button01" to="World/Cube" method="_on_button_01_pressed"]
