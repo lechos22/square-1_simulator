@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://mjj4gw81q5tr"]
+
+[ext_resource type="Script" path="res://CameraRotation.gd" id="2_3wy0c"]
+[ext_resource type="PackedScene" uid="uid://da0x0ahtirtdl" path="res://blender/square-1.blend" id="3_dqi1b"]
+[ext_resource type="Script" path="res://CameraZooming.gd" id="3_u2khg"]
+[ext_resource type="Script" path="res://CubeOperations.gd" id="4_iwtip"]
+
+[sub_resource type="Environment" id="Environment_bl8ix"]
+ambient_light_source = 2
+ambient_light_color = Color(0.439216, 0.439216, 0.439216, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ygaqw"]
+
+[node name="MainScene" type="Node"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="CameraHolder" type="Node3D" parent="World"]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_3wy0c")
+
+[node name="SpotLight" type="SpotLight3D" parent="World/CameraHolder"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 0)
+spot_range = 8.16697
+spot_angle = 63.0001
+
+[node name="Camera" type="Camera3D" parent="World/CameraHolder"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 0)
+script = ExtResource("3_u2khg")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_bl8ix")
+camera_attributes = SubResource("CameraAttributesPractical_ygaqw")
+
+[node name="Cube" parent="World" instance=ExtResource("3_dqi1b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0302715, 0, -0.0357389)
+script = ExtResource("4_iwtip")
+
+[node name="GUI" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Columns" type="HBoxContainer" parent="GUI"]
+layout_mode = 2
+alignment = 1
+
+[node name="LControls" type="VBoxContainer" parent="GUI/Columns"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button10" type="Button" parent="GUI/Columns/LControls"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = "(1, 0)"
+
+[node name="ButtonN01" type="Button" parent="GUI/Columns/LControls"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = "(0, -1)"
+
+[node name="MControls" type="VBoxContainer" parent="GUI/Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="BControls" type="HBoxContainer" parent="GUI/Columns/MControls"]
+layout_mode = 2
+alignment = 2
+
+[node name="ButtonTilt" type="Button" parent="GUI/Columns/MControls/BControls"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = "/"
+
+[node name="RControls" type="VBoxContainer" parent="GUI/Columns"]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonN10" type="Button" parent="GUI/Columns/RControls"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = "(-1, 0)"
+
+[node name="Button01" type="Button" parent="GUI/Columns/RControls"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = "(0, 1)"
